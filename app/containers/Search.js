@@ -38,7 +38,11 @@ export default class Search extends React.Component {
 						})}
 					</ul>
 					:
+<<<<<<< HEAD
                     <LoadingBar></LoadingBar>
+=======
+					<LoadingBar></LoadingBar>
+>>>>>>> 654a3b40bd03a56892a21d21a38c953a7e01749d
 				}
 			</div>
 		);
