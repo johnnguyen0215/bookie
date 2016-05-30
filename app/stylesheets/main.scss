@@ -1,0 +1,15 @@
+@import './bourbon/bourbon';
+@import 'header';
+@import 'nav';
+@import 'footer';
+@import 'auth';
+@import 'search';
+
+
+body{
+	background: url("../img/light-blur-bg.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
