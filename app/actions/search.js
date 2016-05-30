@@ -15,10 +15,10 @@ polyfill();
  * @return Promise
  */
 function makeSearchRequest(method, api) {
-  return request({
-    url: api,
-    method
-  });
+	return request({
+		url: api,
+		method
+	});
 }
 
 function beginSearch(){
@@ -45,26 +45,26 @@ function searchError(){
 
 export function fullTextSearch(query, index){
 	return dispatch => {
-		let api = "https://www.googleapis.com/books/v1/volumes?q=" + query + "&startIndex=" + index + "&maxResults=10";
-	  	dispatch(beginSearch());
-	  	makeSearchRequest('get', api)
-		.then(response => {
-			if(response.status === 200){
-		 		dispatch(searchSuccess(response.data));
-			}
-			else{
+		let api = "https://www.googleapis.com/books/v1/volumes?q=" + query + "&startIndex=" + index + "&maxResults=25";
+		dispatch(beginSearch());
+		makeSearchRequest('get', api)
+			.then(response => {
+				if(response.status === 200){
+					dispatch(searchSuccess(response.data));
+				}
+				else{
+					dispatch(searchError());
+				}
+			})
+			.catch(err => {
 				dispatch(searchError());
-			}
-		})
-		.catch(err => {
-			dispatch(searchError());
-		});
+			});
 	};
 }
 
 
-	/*
-	makeSearchRequest('get', gapi+data)
-	.then(response => {
-	  console.log(response);
-	});*/
+/*
+ makeSearchRequest('get', gapi+data)
+ .then(response => {
+ console.log(response);
+ });*/

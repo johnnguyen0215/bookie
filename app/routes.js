@@ -40,7 +40,7 @@ export default (store) => {
       <Route path="cart" component={Cart} onEnter={requireAuth}></Route>
       <Route path="signup" component={Signup} onEnter={redirectAuth}></Route>
       <Route path="login" component={Login} onEnter={redirectAuth}></Route>
-      <Route path="search" component={Search} onEnter={requireAuth}></Route>
+      <Route path="search" component={Search}></Route>
     </Route>
   );
 };

@@ -11,7 +11,7 @@ if (__DEVSERVER__) {
   config.link = config.link.filter(l => l.rel !== 'stylesheet');
 }*/
 
-const Meta = () => <Helmet title="React Webpack Node" meta={config.meta} link={config.link} />;
+const Meta = () => <Helmet title="Bookie App" meta={config.meta} link={config.link} />;
 
 
 ReactDOMServer.renderToString(<Meta />);

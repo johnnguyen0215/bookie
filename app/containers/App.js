@@ -14,21 +14,21 @@ import Nav from 'components/Nav'
  */
 
 const App = ({children}) => {
-  return (
-	<div>
-		<Nav />
-		<Header />
-		<div className="container">
-			<div className="col-md-12">
-				{children}
+	return (
+		<div>
+			<Nav />
+			<Header />
+			<div className="container">
+				<div className="col-md-12">
+					{children}
+				</div>
 			</div>
 		</div>
-	</div>
-  );
+	);
 };
 
 App.propTypes = {
-  children: PropTypes.object
+	children: PropTypes.object
 };
 
 export default App;

@@ -1,14 +1,13 @@
 import React, {PropTypes} from 'react';
-import { IndexLink, Link } from 'react-router'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { logOut } from 'actions/users.js'
-import { fullTextSearch } from 'actions/search.js'
-import { push, replace } from 'react-router-redux'
+import { push } from 'react-router-redux'
 import materialBookPng from 'img/material-book.png'
 
 class Nav extends React.Component {
   constructor() {
-    super()
+    super();
       this.state = {
         collapsed: true,
         searchQuery: ''
@@ -34,12 +33,11 @@ class Nav extends React.Component {
   onSearchSubmit(e){
     e.preventDefault();
     const { dispatch } = this.props;
-    dispatch(push('/search?q=' + this.state.searchQuery + '&i=0'));
+    dispatch(push('/search?query=' + this.state.searchQuery + '&index=0'));
     this.setState({searchQuery: ''});
   }
 
   printProps(){
-    console.log(this.props);
     console.log(this.state);
   }
 
@@ -63,7 +61,7 @@ class Nav extends React.Component {
               <span className="pull-left">Bookie</span>
             </Link>
           </div>
-          <div className={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
+          <div className={"navbar-collapse " + navClass}>
             <form onSubmit={this.onSearchSubmit.bind(this)} className="navbar-form navbar-left" role="search">
               <div className="form-group">
                 <input type="text" className="form-control" value={this.state.searchQuery} onChange={this.onSearchChange.bind(this)} placeholder="Search"></input>

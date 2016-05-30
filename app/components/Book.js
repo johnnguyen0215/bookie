@@ -6,25 +6,19 @@ class Book extends React.Component{
     const {data} = this.props;
     return (
         <div className="row bookContainer">
-          <div className="col-md-4">
+          <div className="col-md-3">
             {data.volumeInfo.imageLinks ?
               <img src={data.volumeInfo.imageLinks.thumbnail}/>
               :
               <img src={defaultThumbnail}></img>
             }
           </div>
-          <div className="col-md-8">
-            <div className="row">
-              <div className="col-md-12">
-                <span><strong>{data.volumeInfo.title}</strong></span>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-3">
-              </div>
-              <div className="col-md-3">
-              </div>
-            </div>
+          <div className="col-md-6">
+              <span><strong>{data.volumeInfo.title}</strong></span>
+          </div>
+          <div className="col-md-3">
+              <a href="#" className="btn btn-primary">BUY</a>
+              <a href="#" className="btn btn-success">SELL</a>
           </div>
         </div>
     );

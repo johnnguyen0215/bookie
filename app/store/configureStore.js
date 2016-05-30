@@ -3,10 +3,7 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import rootReducer from 'reducers';
 import promiseMiddleware from 'api/promiseMiddleware';
-import DevTools from 'components/DevTools'
-import { routeLocationDidUpdate } from 'actions/routeLocation';
-
-
+import DevTools from 'components/DevTools';
 /*
  * @param {Object} initial state to bootstrap our stores with for server-side rendering
  * @param {History Object} a history object. We use `createMemoryHistory` for server-side rendering,
@@ -41,8 +38,6 @@ export default function configureStore(initialState, history) {
     ...devTools
     )
   );
-
-  // history.listen(location => store.dispatch(routeLocationDidUpdate(location)));
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

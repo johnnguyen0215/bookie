@@ -1,37 +1,35 @@
+
 nav {
 	.navbar-fixed-top {
-	    min-height: 80px;
+		min-height: 80px;
 	}
-
-	.navbar-brand{
+	.navbar-brand {
 		span{
 			margin-left: 10px;
 			vertical-align: middle;
 			line-height:40px;
 		}
 	}
-
 	.navbar-nav > li > a {
 	    padding-top: 0px;
 	    padding-bottom: 0px;
 	    line-height: 80px;
 	}
-
 	form{
 		line-height: 55px;
 	}
-	
 	@media (max-width: 767px) {
-    .navbar-nav > li > a {
-	    line-height: 20px;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
+		.navbar-nav > li > a {
+			line-height: 20px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
 	}
 }
 
+.navbar {
+	background-color: #34495e;
 }
-
-
 
 @media (min-width: 1700px){
 	.container{

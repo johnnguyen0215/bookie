@@ -1,9 +1,33 @@
-.search-results{
-  list-style: none;
-  .book{
-    img{
+$midnight-blue: #34495e;
+
+.search-results {
+  list-style-type: none;
+  .bookContainer {
+    background-color: #ecf0f1;
+    margin-bottom: 20px;
+    padding: 20px;
+    img {
       height: 200px;
       width: 140px;
+      border: 7px solid $midnight-blue;
     }
   }
+}
+
+.btn{
+  border-radius: 0px;
+}
+
+.center-wrapper {
+  text-align:center;
+}
+
+.pagination {
+  li a {
+    background-color: $midnight-blue;
+    &:hover {
+      background-color: darken($midnight-blue, 10);
+    }
+  }
+
 }

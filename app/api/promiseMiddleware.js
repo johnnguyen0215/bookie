@@ -1,7 +1,7 @@
 /*
-* Redux middleware to handle promises
-* As seen in: https://github.com/caljrimmer/isomorphic-redux-app
-*/
+ * Redux middleware to handle promises
+ * As seen in: https://github.com/caljrimmer/isomorphic-redux-app
+ */
 
 export default function promiseMiddleware() {
   return next => action => {
@@ -22,5 +22,5 @@ export default function promiseMiddleware() {
         next({ ...rest, error, type: FAILURE });
         return false;
       });
-   };
+  };
 }
