@@ -7,13 +7,9 @@ import LoadingBar from 'react-redux-loading-bar'
 export default class Search extends React.Component {
 	constructor(props){
 		super();
-		this.state = {
-			fruits: [{id:1, 'bananas'}, {id:2, 'apples'}, {id:3, 'oranges'}]
-		}
 	}
 
 	componentDidMount(){
-		console.log("Component Did Mount");
 		const query = this.props.location.query.q;
 		const index = this.props.location.query.i;
 		const { dispatch } = this.props;
@@ -21,15 +17,15 @@ export default class Search extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps){
+        /*
 		if (this.state.shouldUpdate){
-			console.log("got here");
 			const query = this.props.location.query.q;
 			const index = this.props.location.query.i;
 			const { dispatch } = this.props;
-			console.log("query:", query);
 			dispatch(fullTextSearch(query, index));
-		}
+		}*/
 	}
+
 	/*
 	componentWillReceiveProps(nextProps){
 		if (nextProps.location.query != this.props.location.query){
@@ -44,42 +40,16 @@ export default class Search extends React.Component {
 
 	render() {
 		const { results } = this.props;
+		console.log(results);
 		return (
 			<div>
 				{results.message == "Search success" ?
 					<ul>
-						{this.state.fruits.map((fruit) => {
-							<li key={fruit.id}>{}</li>
-						})}
-						/*
 						{results.data.items.map((item) => {
-							return
-							<li key={item.id}>
-								<div className="row bookContainer">
-									<div className="col-md-4">
-										{ item.volumeInfo.imageLinks.length !== 0 ?
-											<img src={item.volumeInfo.imageLinks.thumbnail}/>
-											:
-											<p>No Thumbnail</p>
-										}
-									</div>
-									<div className="col-md-8">
-										<div className="row">
-											<div className="col-md-12">
-												<span><strong>{item.volumeInfo.title}</strong></span>
-											</div>
-										</div>
-										<div className="row">
-											<div className="col-md-3">
-											</div>
-											<div className="col-md-3">
-											</div>
-										</div>
-									</div>
-								</div
-							</li>
+							return <li key={item.id}>
+                                        <Book data={item}></Book>
+							        </li>
 						})}
-						*/
 					</ul>
 					:
 					<p>Nothing to see here</p>

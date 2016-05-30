@@ -53,12 +53,10 @@ export function fullTextSearch(query, index){
 		 		dispatch(searchSuccess(response.data));
 			}
 			else{
-				console.log("caught error here");
 				dispatch(searchError());
 			}
 		})
 		.catch(err => {
-			console.log(err);
 			dispatch(searchError());
 		});
 	};

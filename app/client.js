@@ -8,7 +8,6 @@ import configureStore from 'store/configureStore';
 import DevTools from 'components/DevTools'
 require ('stylesheets/main.scss');
 
-
 // Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;

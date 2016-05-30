@@ -5,7 +5,6 @@ class Book extends React.Component{
   render(){
     const {data} = this.props;
     return (
-      <li className="book" key={data.id}>
         <div className="row bookContainer">
           <div className="col-md-4">
             {data.volumeInfo.imageLinks ?
@@ -28,7 +27,6 @@ class Book extends React.Component{
             </div>
           </div>
         </div>
-      </li>
     );
   }
 }
