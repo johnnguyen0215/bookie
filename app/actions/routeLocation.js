@@ -6,5 +6,9 @@ import { polyfill } from 'es6-promise';
 polyfill();
 
 export function routeLocationDidUpdate(location){
-    window.console.log(location);
+    return {
+        type: 'ROUTE_CHANGE',
+        location,
+        message: 'route changed'
+    }
 }

@@ -3,7 +3,6 @@ export default function campus(state = {
   message: ''}, action = {}) {
   switch(action.type){
     case 'GET_CAMPUSES_REQUEST':
-      console.log("campus request");
       return Object.assign({}, state, {
       });
     case 'GET_CAMPUSES_SUCCESS':
