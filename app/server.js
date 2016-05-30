@@ -50,7 +50,7 @@ function renderFullPage(renderedContent, initialState, head={
 }
 
 /*
- * Export render function to be used in server/config/routes.js
+ * Export render function to be used in server/config/routeLocation.js
  * We grab the state passed in from the server and the req object from Express/Koa
  * and pass it into the Router.run function.
  */

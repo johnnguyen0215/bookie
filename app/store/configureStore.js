@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import rootReducer from 'reducers';
 import promiseMiddleware from 'api/promiseMiddleware';
 import DevTools from 'components/DevTools'
-import { routeLocationDidUpdate } from 'actions/routes';
+import { routeLocationDidUpdate } from 'actions/routeLocation';
 
 
 /*
@@ -41,6 +41,8 @@ export default function configureStore(initialState, history) {
     ...devTools
     )
   );
+
+  // history.listen(location => store.dispatch(routeLocationDidUpdate(location)));
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

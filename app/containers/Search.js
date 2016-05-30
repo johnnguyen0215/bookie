@@ -17,30 +17,16 @@ export default class Search extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-        /*
-		if (this.state.shouldUpdate){
-			const query = this.props.location.query.q;
-			const index = this.props.location.query.i;
-			const { dispatch } = this.props;
-			dispatch(fullTextSearch(query, index));
-		}*/
-	}
-
-	/*
-	componentWillReceiveProps(nextProps){
 		if (nextProps.location.query != this.props.location.query){
-			console.log("got here");
-			const query = this.props.location.query.q;
-			const index = this.props.location.query.i;
+			const query = nextProps.location.query.q;
+			const index = nextProps.location.query.i;
 			const { dispatch } = this.props;
-			console.log("query:", query);
 			dispatch(fullTextSearch(query, index));
 		}
-	}*/
+	}
 
 	render() {
 		const { results } = this.props;
-		console.log(results);
 		return (
 			<div>
 				{results.message == "Search success" ?
@@ -52,7 +38,7 @@ export default class Search extends React.Component {
 						})}
 					</ul>
 					:
-					<p>Nothing to see here</p>
+					<LoadingBar></LoadingBar>
 				}
 			</div>
 		);
