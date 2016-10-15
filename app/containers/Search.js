@@ -2,29 +2,38 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { fullTextSearch } from 'actions/search';
 import Book from 'components/Book';
+GLOBAL = require('../constants/Globals.js');
 
 export default class Search extends React.Component {
-  constructor(props){
+  constructor(props) {
     super();
     this.state = {
-      maxPaginationIndices: 10,
-      currentPaginationIndex: props.location.query.index
+      maxPaginationIndices: GLOBAL.MAX_PAGINATION_INDICES,
+      maxItemsPerPage: GLOBAL.MAX_ITEMS_PER_PAGE,
+      currentPaginationIndex: props.location.query.index,
     }
   }
 
-  componentDidMount(){
+  /**
+   * Get query and index then dispatch a full text search
+   */
+  componentDidMount() {
     const query = this.props.location.query.query;
     const index = this.props.location.query.index;
     const { dispatch } = this.props;
     dispatch(fullTextSearch(query, index));
   }
 
-  componentWillReceiveProps(nextProps){
-    if (nextProps.location.query != this.props.location.query){
+  /**
+   * Search was executed on search page, make a search
+   * @param nextProps
+   */
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.query != this.props.location.query) {
       const query = nextProps.location.query.query;
       const index = nextProps.location.query.index;
       const { dispatch } = this.props;
-      dispatch(fullTextSearch(query, index));
+      dispatch(fullTextSearch(query, index, GLOBAL.MAX_ITEMS_PER_PAGE));
     }
   }
 

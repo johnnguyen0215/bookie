@@ -2,7 +2,6 @@ import { polyfill } from 'es6-promise';
 import request from 'axios';
 import { push } from 'react-router-redux';
 
-
 polyfill();
 
 /*
@@ -43,9 +42,11 @@ function searchError(){
 	}
 }
 
-export function fullTextSearch(query, index){
+export function fullTextSearch(query, index, maxResults) {
 	return dispatch => {
-		let api = "https://www.googleapis.com/books/v1/volumes?q=" + query + "&startIndex=" + index + "&maxResults=25";
+		let api = "https://www.googleapis.com/books/v1/volumes?q=" + query +
+			"&startIndex=" + index +
+			"&maxResults=" + maxResults;
 		dispatch(beginSearch());
 		makeSearchRequest('get', api)
 			.then(response => {
