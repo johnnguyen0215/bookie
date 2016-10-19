@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { logOut } from 'actions/users.js'
 import { push } from 'react-router-redux'
 import materialBookPng from 'img/material-book.png'
+import * as GLOBAL from '../constants/Globals';
 
 class Nav extends React.Component {
   constructor() {
@@ -33,7 +34,7 @@ class Nav extends React.Component {
   onSearchSubmit(e){
     e.preventDefault();
     const { dispatch } = this.props;
-    dispatch(push('/search?query=' + this.state.searchQuery + '&index=0'));
+    dispatch(push('/search?query=' + this.state.searchQuery + '&index=0' + '&maxResults=' + GLOBAL.MAX_ITEMS_PER_PAGE));
     this.setState({searchQuery: ''});
   }
 
