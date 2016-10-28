@@ -10,8 +10,8 @@ export default class Search extends React.Component {
     super();
     this.state = {
       currentQuery: props.location.query.query,
-      currentPaginationIndex: props.location.query.index,
-      currentMaxResults: props.location.query.maxResults
+      currentPaginationIndex: parseInt(props.location.query.index),
+      currentMaxResults: parseInt(props.location.query.maxResults)
     }
   }
 
@@ -20,13 +20,9 @@ export default class Search extends React.Component {
    */
   componentDidMount() {
     const query = this.state.currentQuery = this.props.location.query.query;
-    const index =
-        this.state.currentPaginationIndex =
-            this.props.location.query.index > 1
-                ? this.props.location.query.index * GLOBAL.MAX_ITEMS_PER_PAGE
-                : this.props.location.query.index;
+    const index = (parseInt(this.props.location.query.index)-1) * GLOBAL.MAX_ITEMS_PER_PAGE;
+    this.setState({currentQuery: query, currentPaginationIndex: parseInt(this.props.location.query.index)});
     const maxResults = this.props.location.query.maxResults;
-    this.state['currentQuery'] = query;
     const { dispatch } = this.props;
     dispatch(fullTextSearch(query, index, maxResults));
   }
@@ -35,37 +31,41 @@ export default class Search extends React.Component {
    * Search was executed on search page, make a search
    * @param nextProps
    */
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location.query != this.props.location.query) {
-      const query = this.state.currentQuery = nextProps.location.query.query;
-      const index =
-          this.state.currentPaginationIndex =
-              nextProps.location.query.index > 1
-              ? nextProps.location.query.index * GLOBAL.MAX_ITEMS_PER_PAGE
-              : nextProps.location.query.index;
-      const maxResults = this.state.currentMaxResults = nextProps.location.query.maxResults;
-      this.state['currentQuery'] = query;
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.query.query != this.props.location.query.query ||
+        prevProps.location.query.index != this.props.location.query.index) {
+      const query = this.props.location.query.query;
+      const index = (parseInt(this.props.location.query.index) - 1) * GLOBAL.MAX_ITEMS_PER_PAGE;
+      const maxResults = parseInt(this.props.location.query.maxResults);
       const { dispatch } = this.props;
       dispatch(fullTextSearch(query, index, maxResults));
     }
   }
+
 
   computePaginationIndices(totalItems) {
     let paginationIndices = [];
     let startIndex = 1;
     let endIndex = GLOBAL.MAX_PAGINATION_INDICES;
 
-    if (this.state.currentPaginationIndex >= GLOBAL.PAGINATION_CUTOFF) {
-      startIndex = this.state.currentPaginationIndex - 5;
-      endIndex = this.state.currentPaginationIndex + 5;
-      endIndex >= totalItems ? endIndex = totalItems+1 : endIndex;
+    if (this.props.location.query.index >= GLOBAL.PAGINATION_CUTOFF) {
+      startIndex = parseInt(this.props.location.query.index) - 5;
+      endIndex = parseInt(this.props.location.query.index) + 5;
     }
-    window.console.log(startIndex + ' ' + endIndex);
+
     for (var i = startIndex; i < endIndex; i++) {
       paginationIndices.push(i);
     }
 
     return paginationIndices;
+  }
+
+  paginationNext() {
+    this.paginationSearch(this.state.currentPaginationIndex+1);
+  }
+
+  paginationPrev() {
+    this.paginationSearch(this.state.currentPaginationIndex-1);
   }
 
   paginationSearch(index){
@@ -77,12 +77,10 @@ export default class Search extends React.Component {
     ));
   }
 
-
   render() {
     const { results } = this.props;
     const { totalItems } = results;
     const paginationLinks = this.computePaginationIndices(totalItems);
-
     return (
       <div>
         {results.message == "Search success" ?
@@ -96,19 +94,25 @@ export default class Search extends React.Component {
             </ul>
             <div className="center-wrapper">
               <ul className="pagination">
-                <li>
-                  <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+                <li onClick={this.paginationPrev.bind(this)}>
+                  <a>
+                    <span >&laquo;</span>
                   </a>
                 </li>
                 {
                   paginationLinks.map((num) => {
-                    let boundPaginationClick = this.paginationSearch.bind(this, num);
-                    return <li key={num}><a href="#" onClick={boundPaginationClick}>{num}</a></li>
+                    return <li onClick={this.paginationSearch.bind(this, num)} key={num}>
+                              <a className={(num == this.props.location.query.index
+                                      ? "focus"
+                                      : "")}
+                              >
+                                {num}
+                              </a>
+                            </li>
                   })
                 }
-                <li>
-                  <a href="#" aria-label="Next">
+                <li onClick={this.paginationNext.bind(this)}>
+                  <a>
                     <span aria-hidden="true">&raquo;</span>
                   </a>
                 </li>

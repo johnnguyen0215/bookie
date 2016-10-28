@@ -34,7 +34,7 @@ class Nav extends React.Component {
   onSearchSubmit(e){
     e.preventDefault();
     const { dispatch } = this.props;
-    dispatch(push('/search?query=' + this.state.searchQuery + '&index=0' + '&maxResults=' + GLOBAL.MAX_ITEMS_PER_PAGE));
+    dispatch(push('/search?query=' + this.state.searchQuery + '&index=1' + '&maxResults=' + GLOBAL.MAX_ITEMS_PER_PAGE));
     this.setState({searchQuery: ''});
   }
 
