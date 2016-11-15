@@ -14,7 +14,8 @@ class Book extends React.Component{
             }
           </div>
           <div className="col-md-6">
-              <span><strong>{data.volumeInfo.title}</strong></span>
+            <div><strong>{data.volumeInfo.title}</strong></div>
+            <div><strong>{data.volumeInfo.authors[0]}</strong></div>
           </div>
           <div className="col-md-3">
               <a href="#" className="btn btn-primary">BUY</a>

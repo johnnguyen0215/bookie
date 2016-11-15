@@ -103,8 +103,8 @@ export default class Search extends React.Component {
                   paginationLinks.map((num) => {
                     return <li onClick={this.paginationSearch.bind(this, num)} key={num}>
                               <a className={(num == this.props.location.query.index
-                                      ? "focus"
-                                      : "")}
+                                  ? "focus"
+                                  : "")}
                               >
                                 {num}
                               </a>
