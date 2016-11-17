@@ -1,16 +1,31 @@
 $midnight-blue: #34495e;
 $turquoise: #1abc9c;
+$white: #ffffff;
 
 .search-results {
   list-style-type: none;
   .bookContainer {
-    background-color: #ecf0f1;
+    background-color: $white;
     margin-bottom: 20px;
     padding: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    label {
+      color: $turquoise;
+      margin-right: 5px;
+    }
+    li {
+      list-style: none;
+    }
     img {
       height: 200px;
       width: 140px;
       border: 7px solid $midnight-blue;
+    }
+
+    .barterButton {
+      width: 100px;
+      margin-top: 40px;
+      text-align: center;
     }
   }
 }

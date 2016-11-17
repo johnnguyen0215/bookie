@@ -6,12 +6,8 @@
 @import 'search';
 @import 'loader';
 
+$hummingBird: #c5eff7;
 
 body {
-	background: url("../img/light-blur-bg.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	overflow-x: hidden;
+	background-color: $hummingBird;
 }
